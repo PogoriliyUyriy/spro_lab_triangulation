@@ -1,3 +1,6 @@
+import entities.Figure;
+import entities.Triangle;
+
 import java.util.*;
 
 /**
@@ -5,10 +8,10 @@ import java.util.*;
  */
 public class SquareCalculator {
 
-//    public static List<Triangle> triangulateFigure(Figure figure){
-//        ArrayList<Triangle> triangles = new ArrayList<Triangle>();
+//    public static List<entities.Triangle> triangulateFigure(entities.Figure figure){
+//        ArrayList<entities.Triangle> triangles = new ArrayList<entities.Triangle>();
 //        for (int i = 0; i < figure.points.size() - 2; i++) {
-//            triangles.add(new Triangle(
+//            triangles.add(new entities.Triangle(
 //                    figure.points.get(0),
 //                    figure.points.get(i + 1),
 //                    figure.points.get((i + 2))

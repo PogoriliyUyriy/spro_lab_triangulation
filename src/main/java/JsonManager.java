@@ -9,7 +9,6 @@ import java.io.FileWriter;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.Iterator;
-import java.util.List;
 
 /**
  * Created by Pogorilyi Yurii on 20.12.2016.
@@ -18,7 +17,7 @@ public class JsonManager {
     public static void write(JSONObject obj, String fileName){
         try {
 
-            FileWriter file = new FileWriter(Constants.RESOURSES_PATH + fileName);
+            FileWriter file = new FileWriter(Constants.RESOURCES_PATH + fileName);
             file.write(obj.toJSONString());
             file.flush();
             file.close();
@@ -40,7 +39,7 @@ public class JsonManager {
 
         obj.put("params", list);
 
-        JsonManager.write(obj, "input.json");
+        JsonManager.write(obj, Constants.INPUT_FILE_NAME);
     }
 
     /**
@@ -55,7 +54,7 @@ public class JsonManager {
         HashMap<Long, Long> vertexFigureCountMap = new HashMap<Long, Long>();
         try {
 
-            Object inputObj = parser.parse(new FileReader(Constants.RESOURSES_PATH + "input.json"));
+            Object inputObj = parser.parse(new FileReader(Constants.RESOURCES_PATH + Constants.INPUT_FILE_NAME));
 
             JSONObject jsonObject = (JSONObject) inputObj;
 
