@@ -19,10 +19,14 @@ public class Triangle extends Figure {
     }
 
     Triangle(Point a, Point b, Point c){
-        super();
         this.A = a;
         this.B = b;
         this.C = c;
+        squareAcc = 0.0;
+    }
+
+    public Triangle(){
+        squareAcc = 0.0;
     }
 
     double P(){ return (getEdgeA() + getEdgeB() + getEdgeC()) / 2; }
@@ -30,4 +34,6 @@ public class Triangle extends Figure {
     public double getSquare(){
         return Math.sqrt(P() * (P() - getEdgeA()) * (P() - getEdgeA()) * (P() - getEdgeC()));
     }
+
+    public double squareAcc;
 }

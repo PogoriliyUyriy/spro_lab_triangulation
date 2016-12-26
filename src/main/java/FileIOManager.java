@@ -13,7 +13,7 @@ import java.util.Iterator;
 /**
  * Created by Pogorilyi Yurii on 20.12.2016.
  */
-public class JsonManager {
+public class FileIOManager {
     public static void write(JSONObject obj, String fileName){
         try {
 
@@ -39,7 +39,7 @@ public class JsonManager {
 
         obj.put("params", list);
 
-        JsonManager.write(obj, Constants.INPUT_FILE_NAME);
+        FileIOManager.write(obj, Constants.INPUT_FILE_NAME);
     }
 
     /**
