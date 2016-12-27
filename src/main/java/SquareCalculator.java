@@ -8,18 +8,6 @@ import java.util.*;
  */
 public class SquareCalculator {
 
-//    public static List<entities.Triangle> triangulateFigure(entities.Figure figure){
-//        ArrayList<entities.Triangle> triangles = new ArrayList<entities.Triangle>();
-//        for (int i = 0; i < figure.points.size() - 2; i++) {
-//            triangles.add(new entities.Triangle(
-//                    figure.points.get(0),
-//                    figure.points.get(i + 1),
-//                    figure.points.get((i + 2))
-//            ));
-//        }
-//        return triangles;
-//    }
-
     public static ArrayList<Figure> readFiguresData(){
         ArrayList<Figure> figures = new ArrayList<Figure>();
 
@@ -44,7 +32,8 @@ public class SquareCalculator {
         }
 
         long end = System.nanoTime();
-        System.out.println("Total time = " + (end - start));
+        long total = end - start;
+        System.out.println("Total time = " + total);
         return square;
     }
 
@@ -61,25 +50,29 @@ public class SquareCalculator {
                 });
 
         long end = System.nanoTime();
-        System.out.println("Total time = " + (end - start));
+        long total = end - start;
+        FileIOManager.writeString(";" + total);
+        System.out.println("Total time = " + total);
 
         return result.squareAcc;
     }
 
-    public static double calculateSquareLambdaPar(List<Figure> figures){
-        System.out.println("calculateSquareLambdaPar() started!");
+    public static double calculateSquareLambdaParallel(List<Figure> figures){
+        System.out.println("calculateSquareLambdaParallel() started!");
         long start = System.nanoTime();
 
         Triangle result =
                 figures.stream()
-                        .flatMap(figure -> figure.triangulate().stream())
+                        .flatMap(figure -> figure.triangulate().parallelStream())
                         .reduce(new Triangle(), (t1, t2)->{
                             t1.squareAcc += t2.getSquare();
                             return t1;
                         });
 
         long end = System.nanoTime();
-        System.out.println("Total time = " + (end - start));
+        long total = end - start;
+        FileIOManager.writeString(";" + total);
+        System.out.println("Total time = " + total);
 
         return result.squareAcc;
     }

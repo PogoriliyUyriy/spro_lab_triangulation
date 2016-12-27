@@ -3,10 +3,7 @@ import org.json.simple.JSONObject;
 import org.json.simple.parser.JSONParser;
 import org.json.simple.parser.ParseException;
 
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
+import java.io.*;
 import java.util.HashMap;
 import java.util.Iterator;
 
@@ -28,14 +25,14 @@ public class FileIOManager {
 //        System.out.println(obj);
     }
 
-    public static void generateParams(int vertexCount, int figuresCount){
+    public static void generateParams(int vertexCount, int figuresCount, int step, int expNumber){
         JSONObject obj = new JSONObject();
         JSONArray list = new JSONArray();
         JSONObject polygonParams = new JSONObject();
-        polygonParams.put("figuresCount", figuresCount);
-        polygonParams.put("vertexCount", vertexCount);
+            polygonParams.put("figuresCount", figuresCount * step * expNumber);
+            polygonParams.put("vertexCount", vertexCount * step * expNumber);
 
-        list.add(polygonParams);
+            list.add(polygonParams);
 
         obj.put("params", list);
 
@@ -80,5 +77,27 @@ public class FileIOManager {
             e.printStackTrace();
         }
         return vertexFigureCountMap;
+    }
+
+    public static void writeString(String s){
+
+        try (BufferedWriter bw = new BufferedWriter(new FileWriter(Constants.RESOURCES_PATH + Constants.OUTPUT_FILE_NAME, true))) {
+            bw.write(s);
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+    }
+
+    public static String readFile(String fileName){
+        String result = "";
+        try (BufferedReader br = new BufferedReader(new FileReader(fileName))) {
+            String sCurrentLine;
+            while ((sCurrentLine = br.readLine()) != null) {
+                result += sCurrentLine;
+            }
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return result;
     }
 }
