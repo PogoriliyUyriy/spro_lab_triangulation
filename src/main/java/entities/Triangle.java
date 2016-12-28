@@ -32,7 +32,7 @@ public class Triangle extends Figure {
     double P(){ return (getEdgeA() + getEdgeB() + getEdgeC()) / 2; }
 
     public double getSquare(){
-        return Math.sqrt(P() * (P() - getEdgeA()) * (P() - getEdgeA()) * (P() - getEdgeC()));
+        return Math.sqrt(P() * (P() - getEdgeA()) * (P() - getEdgeB()) * (P() - getEdgeC()));
     }
 
     public double squareAcc;

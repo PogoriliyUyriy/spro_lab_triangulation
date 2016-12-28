@@ -1,7 +1,9 @@
 import entities.Figure;
+import entities.Triangle;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Date;
 
 /**
  * Created by Pogorilyi Yurii on 20.12.2016.
@@ -26,7 +28,8 @@ public class Main {
         int FIGURES_COUNT = new Integer(params[2]);
         int VERTEX_COUNT = new Integer(params[3]);
 
-        FileIOManager.writeString("exp_num;sequantial;parallel");
+        FileIOManager.writeString("\n" + new Date().toString() + "\n");
+        FileIOManager.writeString("exp_num;sequantial_time;parallel_time");
 
         for (int expNum = 1; expNum < EXPERIMENTS_COUNT; expNum++) {
             FileIOManager.generateParams(VERTEX_COUNT, FIGURES_COUNT, STEP, expNum);
@@ -37,6 +40,11 @@ public class Main {
             double squareLP = SquareCalculator.calculateSquareLambdaParallel(inputFigures);
             System.out.println("squareLP = " + squareLP);
         }
-//        FileIOManager.generateParams(VERTEX_COUNT, FIGURES_COUNT, STEP, expNumber);
+//        Figure f = new Figure(4);
+//        double s = 0.0;
+//        for (Triangle triangle : f.triangulate()) {
+//            s+=triangle.getSquare();
+//        }
+//        System.out.println("s = " + s);
     }
 }
